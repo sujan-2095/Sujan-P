@@ -18,7 +18,7 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ title, duration, subtitle, tags, features, github, image, delay, featured }) => (
-    <div className={`group bg-[#262626]/80 backdrop-blur-sm rounded-2xl border border-[#ACBFA4]/10 h-full flex flex-col hover:border-[#FF7F11]/50 hover:shadow-[0_0_30px_rgba(255,127,17,0.05)] transition-all duration-500 observe-me overflow-hidden hover-lift ${featured ? '' : 'p-6'}`} style={{ transitionDelay: `${delay}ms` }}>
+    <div className={`group bg-[#262626]/80 backdrop-blur-sm rounded-2xl border border-[#ACBFA4]/10 h-full flex flex-col transition-all duration-500 observe-me overflow-hidden premium-card-hover ${featured ? '' : 'p-6'}`} style={{ transitionDelay: `${delay}ms` }}>
         {featured && image && (
             <div className="relative h-64 overflow-hidden">
                 <img

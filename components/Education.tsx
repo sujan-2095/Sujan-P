@@ -27,7 +27,7 @@ const EducationItem: React.FC<EducationItemProps> = ({ degree, institution, peri
         </div>
 
         {/* Education Card */}
-        <div className="bg-[#262626]/80 backdrop-blur-md p-8 rounded-3xl border border-[#ACBFA4]/10 hover:border-[#FF7F11]/30 transition-all duration-500 hover:shadow-[0_0_40px_rgba(255,127,17,0.05)] relative hover-lift">
+        <div className="bg-[#262626]/80 backdrop-blur-md p-8 rounded-3xl border border-[#ACBFA4]/10 transition-all duration-500 relative premium-card-hover">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
                 <div>
                     <h4 className="text-2xl md:text-3xl font-bold text-[#E2E8CE] mb-1">{degree}</h4>

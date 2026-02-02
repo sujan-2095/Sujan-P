@@ -41,7 +41,8 @@
         }
 
         .glass-card {
-            background-color: rgba(172, 191, 164, 0.03); /* Tint of Sage */
+            background-color: rgba(172, 191, 164, 0.03);
+            /* Tint of Sage */
             backdrop-filter: blur(24px);
             border: 1px solid rgba(172, 191, 164, 0.1);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
@@ -153,6 +154,17 @@
 
         .hover-lift:hover {
             transform: translateY(-10px);
+        }
+
+        .premium-card-hover {
+            transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .premium-card-hover:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(255, 127, 17, 0.4) !important;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 127, 17, 0.1);
+            background-color: rgba(172, 191, 164, 0.05) !important;
         }
     }
 

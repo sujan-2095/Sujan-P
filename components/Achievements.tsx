@@ -53,7 +53,7 @@ const Achievements: React.FC = () => {
         <div className="grid lg:grid-cols-2 gap-6 items-stretch">
           {ACHIEVEMENTS.map((ach, index) => (
             <div key={index} className="h-full">
-              <div className="bg-[#262626]/80 p-8 rounded-2xl border border-[#ACBFA4]/10 h-full flex flex-col hover:border-[#FF7F11] transition-all duration-300 observe-me shadow-lg hover-lift" style={{ transitionDelay: `${100 + index * 100}ms` }}>
+              <div className="bg-[#262626]/80 p-8 rounded-2xl border border-[#ACBFA4]/10 h-full flex flex-col transition-all duration-300 observe-me shadow-lg premium-card-hover" style={{ transitionDelay: `${100 + index * 100}ms` }}>
                 <div className="flex items-start gap-5 mb-4">
                   <div className="bg-[#FF7F11]/10 p-4 rounded-xl text-[#FF7F11] hover-spin transition-transform">
                     <Icon name={ach.icon} className="w-8 h-8" />
@@ -81,7 +81,7 @@ const Achievements: React.FC = () => {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {CERTIFICATIONS.map((cert, index) => (
             <div key={index} className="h-full">
-              <div className="bg-[#262626]/80 backdrop-blur-sm p-6 rounded-2xl border border-[#ACBFA4]/10 h-full flex flex-col items-start text-left hover:border-[#FF7F11] transition-all duration-300 observe-me hover:shadow-[0_0_20px_rgba(255,127,17,0.05)] hover-lift" style={{ transitionDelay: `${400 + index * 50}ms` }}>
+              <div className="bg-[#262626]/80 backdrop-blur-sm p-6 rounded-2xl border border-[#ACBFA4]/10 h-full flex flex-col items-start text-left transition-all duration-300 observe-me premium-card-hover" style={{ transitionDelay: `${400 + index * 50}ms` }}>
                 <h4 className="text-lg font-bold text-[#E2E8CE] mb-2 leading-snug">{cert.title}</h4>
                 <p className="text-sm text-[#ACBFA4] mb-6 flex-grow font-medium">{cert.issuer}</p>
                 <button

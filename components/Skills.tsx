@@ -97,7 +97,7 @@ const UnifiedSkillCard: React.FC<{
     delay: number;
     className?: string;
 }> = ({ title, groups, delay, className }) => (
-    <div className={`bg-[#262626]/80 backdrop-blur-md p-8 rounded-3xl border border-[#ACBFA4]/10 hover:border-[#FF7F11]/30 transition-all duration-500 observe-me flex flex-col group hover-lift ${className}`} style={{ transitionDelay: `${delay}ms` }}>
+    <div className={`bg-[#262626]/80 backdrop-blur-md p-8 rounded-3xl border border-[#ACBFA4]/10 transition-all duration-500 observe-me flex flex-col group premium-card-hover ${className}`} style={{ transitionDelay: `${delay}ms` }}>
         <div className="mb-8">
             <h3 className="text-2xl font-bold text-[#E2E8CE] tracking-tight">{title}</h3>
             <div className="h-1 w-12 bg-[#FF7F11] mt-2 rounded-full"></div>
@@ -160,7 +160,7 @@ const Skills: React.FC = () => {
                 <UnifiedSkillCard {...toolsGroup} delay={500} />
             </div>
 
-            <div className="mt-12 bg-gradient-to-br from-[#262626] to-[#262626]/50 p-10 rounded-3xl border border-[#FF7F11]/10 observe-me hover-lift" style={{ transitionDelay: '600ms' }}>
+            <div className="mt-12 bg-gradient-to-br from-[#262626] to-[#262626]/50 p-10 rounded-3xl border border-[#FF7F11]/10 observe-me premium-card-hover" style={{ transitionDelay: '600ms' }}>
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-12">
                     <div className="max-w-md">
                         <h3 className="text-2xl font-bold text-[#E2E8CE] mb-2 flex items-center">

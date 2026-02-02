@@ -9,7 +9,7 @@ import MailIcon from './icons/MailIcon';
 import PhoneIcon from './icons/PhoneIcon';
 
 const StatBox: React.FC<{ value: string; label: string; delay?: string }> = ({ value, label, delay = '0ms' }) => (
-    <div className="bg-[#262626]/50 border border-[#ACBFA4]/10 rounded-lg p-4 text-center observe-me hover-lift" style={{ transitionDelay: delay }}>
+    <div className="bg-[#262626]/50 border border-[#ACBFA4]/10 rounded-lg p-4 text-center observe-me premium-card-hover" style={{ transitionDelay: delay }}>
         <div className="text-3xl font-bold text-[#FF7F11]">{value}</div>
         <p className="text-sm text-[#ACBFA4]">{label}</p>
     </div>
@@ -81,7 +81,7 @@ const About: React.FC = () => {
                     </div>
 
                     {/* Areas of Interest */}
-                    <div className="bg-[#262626]/80 border border-[#ACBFA4]/10 rounded-3xl p-8 observe-me" style={{ transitionDelay: '1100ms' }}>
+                    <div className="bg-[#262626]/80 border border-[#ACBFA4]/10 rounded-3xl p-8 observe-me premium-card-hover" style={{ transitionDelay: '1100ms' }}>
                         <h4 className="text-[#E2E8CE] font-bold mb-6 flex items-center gap-3 text-lg">
                             <Icon name="Brain" className="w-6 h-6 text-[#FF7F11]" />
                             Areas of Interest
