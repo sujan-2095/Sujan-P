@@ -2,10 +2,10 @@
     :root {
         --transition-speed: 0.3s;
         --animation-duration: 1s;
-        --color-accent: #FF7F11;
-        --color-secondary: #ACBFA4;
-        --color-text: #E2E8CE;
-        --color-bg: #262626;
+        --color-accent: #FA8112;
+        --color-secondary: #F5E7C6;
+        --color-text: #FAF3E1;
+        --color-bg: #222222;
     }
 
     body {
@@ -17,7 +17,7 @@
     }
 
     ::selection {
-        background-color: rgba(255, 127, 17, 0.3);
+        background-color: rgba(250, 129, 18, 0.3);
         color: var(--color-accent);
     }
 
@@ -41,10 +41,10 @@
         }
 
         .glass-card {
-            background-color: rgba(172, 191, 164, 0.03);
-            /* Tint of Sage */
+            background-color: rgba(245, 231, 198, 0.03);
+            /* Tint of Warm Beige */
             backdrop-filter: blur(24px);
-            border: 1px solid rgba(172, 191, 164, 0.1);
+            border: 1px solid rgba(245, 231, 198, 0.1);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             transition: all var(--transition-speed) ease;
         }
@@ -162,9 +162,9 @@
 
         .premium-card-hover:hover {
             transform: translateY(-10px) scale(1.02);
-            border-color: rgba(255, 127, 17, 0.4) !important;
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 127, 17, 0.1);
-            background-color: rgba(172, 191, 164, 0.05) !important;
+            border-color: rgba(250, 129, 18, 0.4) !important;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(250, 129, 18, 0.1);
+            background-color: rgba(245, 231, 198, 0.05) !important;
         }
     }
 
@@ -177,7 +177,7 @@
         content: '';
         position: absolute;
         inset: 0;
-        background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255, 127, 17, 0.15) 0%, transparent 40%);
+        background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(250, 129, 18, 0.15) 0%, transparent 40%);
         opacity: 0;
         transition: opacity 0.3s;
         pointer-events: none;
@@ -195,7 +195,7 @@
         width: 100%;
         height: 100%;
         z-index: -1;
-        background: #262626;
+        background: #222222;
         /* Matches --color-bg */
         overflow: hidden;
     }
@@ -205,11 +205,11 @@
         position: absolute;
         inset: -100%;
         background:
-            radial-gradient(circle at 10% 20%, rgba(172, 191, 164, 0.1) 0%, transparent 50%),
-            radial-gradient(circle at 90% 10%, rgba(255, 127, 17, 0.05) 0%, transparent 50%),
-            radial-gradient(circle at 50% 50%, rgba(38, 38, 38, 0.2) 0%, transparent 60%),
-            radial-gradient(circle at 30% 80%, rgba(255, 127, 17, 0.08) 0%, transparent 40%),
-            radial-gradient(circle at 80% 90%, rgba(172, 191, 164, 0.04) 0%, transparent 40%);
+            radial-gradient(circle at 10% 20%, rgba(245, 231, 198, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 90% 10%, rgba(250, 129, 18, 0.05) 0%, transparent 50%),
+            radial-gradient(circle at 50% 50%, rgba(34, 34, 34, 0.2) 0%, transparent 60%),
+            radial-gradient(circle at 30% 80%, rgba(250, 129, 18, 0.08) 0%, transparent 40%),
+            radial-gradient(circle at 80% 90%, rgba(245, 231, 198, 0.04) 0%, transparent 40%);
         filter: blur(120px);
         animation: wave-flow 45s ease-in-out infinite alternate;
     }
@@ -219,8 +219,8 @@
         position: absolute;
         inset: -100%;
         background:
-            radial-gradient(circle at 80% 30%, rgba(255, 127, 17, 0.03) 0%, transparent 50%),
-            radial-gradient(circle at 20% 70%, rgba(172, 191, 164, 0.02) 0%, transparent 50%);
+            radial-gradient(circle at 80% 30%, rgba(250, 129, 18, 0.03) 0%, transparent 50%),
+            radial-gradient(circle at 20% 70%, rgba(245, 231, 198, 0.02) 0%, transparent 50%);
         filter: blur(150px);
         animation: secondary-flow 60s linear infinite;
         mix-blend-mode: screen;
@@ -261,7 +261,7 @@
     .spotlight {
         position: fixed;
         inset: 0;
-        background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255, 127, 17, 0.05) 0%, transparent 70%);
+        background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(250, 129, 18, 0.05) 0%, transparent 70%);
         pointer-events: none;
         z-index: 1;
     }

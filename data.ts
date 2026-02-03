@@ -97,6 +97,7 @@ export const PROJECTS = [
       'Impact: Improved quiz creation speed for educators by ~40%.',
     ],
     github: 'https://github.com/sujan-2095/AutoQuizzer',
+    liveUrl: 'https://ai-quiz-generator-734185736539.us-west1.run.app/',
   },
   {
     title: 'AI-Powered Tamil OCR',
@@ -122,6 +123,7 @@ export const PROJECTS = [
       'Impact: Reduced data retrieval time and improved record accuracy.',
     ],
     github: 'https://github.com/sujan-2095/CRMS',
+    liveUrl: 'https://crms-vs4n.onrender.com/',
   },
   {
     title: 'Emotion Detection',

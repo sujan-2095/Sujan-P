@@ -22,7 +22,7 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-[#262626] text-[#E2E8CE] overflow-x-hidden relative">
+    <div className="bg-[#222222] text-[#FAF3E1] overflow-x-hidden relative">
       <div className="animated-bg"></div>
       <ParticlesBackground />
       <div className="spotlight fixed inset-0"></div>
