@@ -23,11 +23,12 @@ const CertificateModal: React.FC<ModalProps> = ({ url, onClose }) => (
       <div className="flex items-center justify-between p-5 border-b border-[#ACBFA4]/5 bg-[#262626]/80 backdrop-blur-xl">
         <div className="flex items-center gap-3">
           <div className="w-2 h-2 rounded-full bg-[#FF7F11] animate-pulse"></div>
-          <h3 className="text-[#E2E8CE] font-bold tracking-wide uppercase text-[10px]">Certificate Viewer</h3>
+          <h3 className="font-bold tracking-wide uppercase text-[10px]" style={{ color: 'var(--text-main)' }}>Certificate Viewer</h3>
         </div>
         <button
           onClick={onClose}
-          className="p-2 text-[#ACBFA4] hover:text-[#FF7F11] hover:bg-[#ACBFA4]/5 rounded-full transition-all duration-300"
+          className="p-2 hover:text-[#FF7F11] hover:bg-[#ACBFA4]/5 rounded-full transition-all duration-300"
+          style={{ color: 'var(--text-muted)' }}
         >
           <XIcon className="w-6 h-6" />
         </button>
@@ -49,7 +50,7 @@ const Achievements: React.FC = () => {
   return (
     <SectionWrapper id="achievements" title="Achievements & Certifications" subtitle="Recognitions & Benchmarks">
       <div className="mb-12">
-        <h3 className="text-2xl font-bold text-[#E2E8CE] mb-6 border-l-4 border-[#FF7F11] pl-4 observe-me">Achievements & Recognitions</h3>
+        <h3 className="text-2xl font-bold mb-6 border-l-4 border-[#FF7F11] pl-4 observe-me" style={{ color: 'var(--text-main)' }}>Achievements & Recognitions</h3>
         <div className="grid lg:grid-cols-2 gap-6 items-stretch">
           {ACHIEVEMENTS.map((ach, index) => (
             <div key={index} className="h-full">
@@ -59,11 +60,11 @@ const Achievements: React.FC = () => {
                     <Icon name={ach.icon} className="w-8 h-8" />
                   </div>
                   <div>
-                    <h4 className="text-xl font-bold text-[#E2E8CE] mb-1">{ach.title}</h4>
+                    <h4 className="text-xl font-bold mb-1" style={{ color: 'var(--text-main)' }}>{ach.title}</h4>
                     <span className="text-xs bg-[#FF7F11]/10 text-[#FF7F11] px-3 py-1 rounded-full font-bold uppercase tracking-wider border border-[#FF7F11]/20">{ach.issuer}</span>
                   </div>
                 </div>
-                <p className="text-[#ACBFA4] leading-relaxed mb-6 flex-grow">{ach.description}</p>
+                <p className="leading-relaxed mb-6 flex-grow text-justify" style={{ color: 'var(--text-muted)' }}>{ach.description}</p>
                 <button
                   onClick={() => setSelectedCert(ach.certificateUrl)}
                   className="mt-auto text-sm font-bold text-left text-[#FF7F11] hover:brightness-110 transition-colors flex items-center gap-2 group/btn"
@@ -77,13 +78,13 @@ const Achievements: React.FC = () => {
       </div>
 
       <div>
-        <h3 className="text-2xl font-bold text-[#E2E8CE] mb-6 border-l-4 border-[#FF7F11] pl-4 observe-me" style={{ transitionDelay: '300ms' }}>Courses & Professional Certifications</h3>
+        <h3 className="text-2xl font-bold mb-6 border-l-4 border-[#FF7F11] pl-4 observe-me" style={{ color: 'var(--text-main)', transitionDelay: '300ms' }}>Courses & Professional Certifications</h3>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {CERTIFICATIONS.map((cert, index) => (
             <div key={index} className="h-full">
               <div className="bg-[#262626]/80 backdrop-blur-sm p-6 rounded-2xl border border-[#ACBFA4]/10 h-full flex flex-col items-start text-left transition-all duration-300 observe-me premium-card-hover" style={{ transitionDelay: `${400 + index * 50}ms` }}>
-                <h4 className="text-lg font-bold text-[#E2E8CE] mb-2 leading-snug">{cert.title}</h4>
-                <p className="text-sm text-[#ACBFA4] mb-6 flex-grow font-medium">{cert.issuer}</p>
+                <h4 className="text-lg font-bold mb-2 leading-snug" style={{ color: 'var(--text-main)' }}>{cert.title}</h4>
+                <p className="text-sm mb-6 flex-grow font-medium" style={{ color: 'var(--text-muted)' }}>{cert.issuer}</p>
                 <button
                   onClick={() => setSelectedCert(cert.url)}
                   className="mt-auto text-sm font-bold text-[#FF7F11] hover:brightness-110 transition-colors inline-flex items-center gap-1 group/btn"

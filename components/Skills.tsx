@@ -1,4 +1,3 @@
-
 import React from 'react';
 import SectionWrapper from './SectionWrapper';
 import { SKILLS_DATA, SOFT_SKILLS } from '../data';
@@ -58,31 +57,44 @@ const SKILL_COLORS: Record<string, string> = {
 };
 
 const SkillBadge: React.FC<{ name: string; level?: string }> = ({ name, level }) => {
-    // Extract base name if it's like "HTML5, CSS3, JavaScript"
     const names = name.includes(',') ? name.split(',').map(n => n.trim()) : [name];
 
     return (
-        <div className="flex flex-wrap gap-x-6 gap-y-3">
+        <div className="flex flex-wrap gap-3">
             {names.map((n, i) => {
-                // Extract color from our registry or default to gray
                 const colorClass = Object.entries(SKILL_COLORS).find(([key]) => n.includes(key))?.[1] || 'bg-[#ACBFA4]/20';
-                // Extract the hex code if it exists in the tailwind class string
                 const hexMatch = colorClass.match(/#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})/);
                 const dotColor = hexMatch ? `#${hexMatch[1]}` : '#ACBFA4';
 
                 return (
-                    <div key={i} className="flex items-center gap-2.5 group relative cursor-default">
+                    <div
+                        key={i}
+                        className="flex items-center gap-3 px-4 py-2 rounded-xl transition-all duration-300 group cursor-default"
+                        style={{ background: 'var(--bg-surface)', border: '1px solid var(--border)' }}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.background = 'var(--primary)';
+                            e.currentTarget.style.borderColor = 'var(--primary)';
+                            const spans = e.currentTarget.querySelectorAll('span');
+                            spans.forEach(s => s.style.color = 'white');
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.background = 'var(--bg-surface)';
+                            e.currentTarget.style.borderColor = 'var(--border)';
+                            const spans = e.currentTarget.querySelectorAll('span');
+                            spans.forEach(s => s.style.color = 'var(--text-main)');
+                        }}
+                    >
                         <div
-                            className="w-2 h-2 rounded-full shadow-[0_0_8px_rgba(0,0,0,0.5)] transition-transform group-hover:scale-125"
+                            className="w-2 h-2 rounded-full"
                             style={{ backgroundColor: dotColor }}
                         ></div>
-                        <span className="text-[#E2E8CE]/90 text-base font-semibold group-hover:text-[#FF7F11] transition-colors tracking-wide">
+                        <span style={{ color: 'var(--text-main)', fontSize: '0.9rem', fontWeight: 600 }}>
                             {n}
                         </span>
                         {level && (
-                            <div className="absolute -top-8 left-0 bg-white text-black text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none font-bold shadow-xl z-10">
+                            <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded ml-2" style={{ background: 'rgba(255,255,255,0.1)' }}>
                                 {level}
-                            </div>
+                            </span>
                         )}
                     </div>
                 );
@@ -97,17 +109,37 @@ const UnifiedSkillCard: React.FC<{
     delay: number;
     className?: string;
 }> = ({ title, groups, delay, className }) => (
-    <div className={`bg-[#262626]/80 backdrop-blur-md p-8 rounded-3xl border border-[#ACBFA4]/10 transition-all duration-500 observe-me flex flex-col group premium-card-hover ${className}`} style={{ transitionDelay: `${delay}ms` }}>
-        <div className="mb-8">
-            <h3 className="text-2xl font-bold text-[#E2E8CE] tracking-tight">{title}</h3>
-            <div className="h-1 w-12 bg-[#FF7F11] mt-2 rounded-full"></div>
+    <div
+        className={`observe-me flex flex-col group ${className}`}
+        style={{
+            transitionDelay: `${delay}ms`,
+            background: 'var(--bg-card)',
+            border: '1px solid var(--border)',
+            borderRadius: 'var(--radius-global)',
+            padding: '32px',
+            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+        }}
+        onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-8px)';
+            e.currentTarget.style.borderColor = 'var(--primary)';
+            e.currentTarget.style.boxShadow = 'var(--shadow-hover)';
+        }}
+        onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.borderColor = 'var(--border)';
+            e.currentTarget.style.boxShadow = 'none';
+        }}
+    >
+        <div className="mb-8 border-b border-[rgba(255,255,255,0.05)] pb-4">
+            <h3 className="text-2xl font-bold" style={{ color: 'var(--text-main)', fontFamily: "'Poppins', sans-serif" }}>{title}</h3>
+            <div className="h-1 w-12 rounded-full mt-2" style={{ background: 'var(--primary)' }}></div>
         </div>
 
         <div className="space-y-8 flex-grow">
             {groups.map((group, gIdx) => (
                 <div key={gIdx}>
-                    <h4 className="text-xs uppercase tracking-[0.2em] font-bold text-[#ACBFA4]/50 mb-4">{group.label}</h4>
-                    <div className="flex flex-wrap gap-2.5">
+                    <h4 className="text-xs uppercase tracking-[0.2em] font-bold mb-4" style={{ color: 'var(--text-muted)' }}>{group.label}</h4>
+                    <div className="flex flex-wrap gap-2">
                         {group.skills.map((skill, sIdx) => (
                             <SkillBadge
                                 key={sIdx}
@@ -150,38 +182,45 @@ const Skills: React.FC = () => {
     return (
         <SectionWrapper id="skills" title="Technical Arsenal" subtitle="Unified expertise in systems and innovation">
             <div className="grid lg:grid-cols-2 gap-8 items-stretch pt-8">
-                {/* Mega Dev Card - Spans 2 rows in the first column */}
                 <UnifiedSkillCard {...devGroup} delay={100} className="lg:row-span-2" />
-
-                {/* AI Card - Top of second column */}
                 <UnifiedSkillCard {...aiGroup} delay={300} />
-
-                {/* Tools Card - Bottom of second column */}
                 <UnifiedSkillCard {...toolsGroup} delay={500} />
             </div>
 
-            <div className="mt-12 bg-gradient-to-br from-[#262626] to-[#262626]/50 p-10 rounded-3xl border border-[#FF7F11]/10 observe-me premium-card-hover" style={{ transitionDelay: '600ms' }}>
+            <div
+                className="mt-12 p-10 rounded-3xl observe-me transition-all duration-300"
+                style={{
+                    background: 'var(--bg-card)',
+                    border: '1px solid var(--primary)',
+                    transitionDelay: '600ms',
+                    boxShadow: 'var(--shadow-hover)'
+                }}
+            >
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-12">
                     <div className="max-w-md">
-                        <h3 className="text-2xl font-bold text-[#E2E8CE] mb-2 flex items-center">
-                            <Icon name="Users" className="w-6 h-6 text-[#FF7F11] mr-3" /> Professional Traits
+                        <h3 className="text-2xl font-bold mb-2 flex items-center" style={{ color: 'var(--text-main)', fontFamily: "'Poppins', sans-serif" }}>
+                            <Icon name="Users" className="w-6 h-6 mr-3" style={{ color: 'var(--primary)' }} /> Professional Traits
                         </h3>
-                        <p className="text-[#ACBFA4] text-base">Mentalities and leadership qualities that drive my engineering work.</p>
+                        <p className="text-base text-justify" style={{ color: 'var(--text-muted)' }}>Mentalities and leadership qualities that drive my engineering work.</p>
                     </div>
                     <div className="flex-grow grid grid-cols-2 sm:grid-cols-3 gap-4">
                         {SOFT_SKILLS.map((skill, index) => (
-                            <div key={index} className="flex items-center gap-3 bg-[#ACBFA4]/5 p-4 rounded-xl border border-[#ACBFA4]/10 hover:border-[#FF7F11]/20 transition-all">
-                                <div className="w-2 h-2 rounded-full bg-[#FF7F11] shadow-[0_0_8px_rgba(255,127,17,0.4)]"></div>
-                                <span className="text-[#E2E8CE] text-base font-semibold">{skill}</span>
+                            <div
+                                key={index}
+                                className="flex items-center gap-3 p-4 rounded-xl transition-all"
+                                style={{ background: 'var(--bg-surface)', border: '1px solid var(--border)' }}
+                            >
+                                <div className="w-2 h-2 rounded-full" style={{ background: 'var(--primary)' }}></div>
+                                <span className="text-base font-semibold" style={{ color: 'var(--text-main)' }}>{skill}</span>
                             </div>
                         ))}
                     </div>
                 </div>
             </div>
 
-            <div className="mt-16 text-center text-[#ACBFA4]/40 text-xs uppercase tracking-[0.2em] font-bold observe-me" style={{ transitionDelay: '800ms' }}>
+            <div className="mt-16 text-center text-xs uppercase tracking-[0.2em] font-bold observe-me" style={{ transitionDelay: '800ms', color: 'rgba(255,255,255,0.2)' }}>
                 <p>Curated Technical Stack &nbsp; • &nbsp; Continuous Learning Mindset</p>
-                <p className="mt-2 lowercase text-[#ACBFA4]/30 font-medium whitespace-pre-wrap">"Learning" labels demonstrate honesty and a growth mindset</p>
+                <p className="mt-2 lowercase font-medium whitespace-pre-wrap">"Learning" labels demonstrate honesty and a growth mindset</p>
             </div>
         </SectionWrapper>
     );

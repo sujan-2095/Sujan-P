@@ -43,14 +43,15 @@ export const useAnimationObserver = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in-up');
-            entry.target.classList.remove('opacity-0');
+            entry.target.classList.add('reveal-active');
+            // Optional: Stop observing once revealed to avoid re-triggering
+            observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
     );
-    
+
     const elements = document.querySelectorAll('.observe-me');
     elements.forEach(el => observer.observe(el));
 

@@ -11,7 +11,7 @@ import PhoneIcon from './icons/PhoneIcon';
 const StatBox: React.FC<{ value: string; label: string; delay?: string }> = ({ value, label, delay = '0ms' }) => (
     <div className="bg-[#262626]/50 border border-[#ACBFA4]/10 rounded-lg p-4 text-center observe-me premium-card-hover" style={{ transitionDelay: delay }}>
         <div className="text-3xl font-bold text-[#FF7F11]">{value}</div>
-        <p className="text-sm text-[#ACBFA4]">{label}</p>
+        <p className="text-sm" style={{ color: 'var(--text-muted)' }}>{label}</p>
     </div>
 );
 
@@ -33,14 +33,14 @@ const About: React.FC = () => {
         <SectionWrapper id="about" title="About Me" subtitle="My Introduction">
             <div className="grid lg:grid-cols-3 gap-12 items-start">
                 <div className="lg:col-span-2 space-y-10">
-                    <div className="space-y-6 text-[#E2E8CE]/90 observe-me" style={{ transitionDelay: '100ms' }}>
-                        <p className="leading-relaxed">
+                    <div className="space-y-6 observe-me" style={{ color: 'rgba(226, 232, 206, 0.9)', transitionDelay: '100ms' }}>
+                        <p className="leading-relaxed text-justify">
                             I am an undergraduate Information Technology student with a strong interest in building practical, real-world software systems. My journey into technology began with curiosity about how applications work behind the scenes, which gradually evolved into a passion for developing complete solutions that combine frontend design, backend logic, and intelligent features.
                         </p>
-                        <p className="leading-relaxed">
+                        <p className="leading-relaxed text-justify">
                             I strongly believe that the most effective way to learn technology is through hands-on experience. Rather than limiting myself to theory, I actively work on projects that help me understand system design, data handling, and application flow in depth. I enjoy building applications from scratch, debugging complex issues, and refining both functionality and user experience to create clean and reliable software.
                         </p>
-                        <p className="leading-relaxed">
+                        <p className="leading-relaxed text-justify">
                             Over time, I have gained experience in web development and backend systems, and I have also explored AI-based applications such as OCR and emotion detection. I focus on integrating these technologies into usable applications rather than treating them as isolated experiments. This approach has helped me develop a problem-solving mindset and a deeper understanding of how modern software systems are built and deployed.
                         </p>
                         <div className="pt-4 border-t border-[#ACBFA4]/10">
@@ -55,18 +55,18 @@ const About: React.FC = () => {
                             <li key={index} className="flex items-start observe-me" style={{ transitionDelay: `${200 + index * 100}ms` }}>
                                 <Icon name="Check" className="w-5 h-5 text-[#FF7F11] mr-3 mt-1 flex-shrink-0" />
                                 <div>
-                                    <strong className="text-[#E2E8CE] block mb-0.5">{point.text}</strong>
-                                    <p className="text-[#ACBFA4]/80 text-sm leading-relaxed">{point.detail}</p>
+                                    <strong className="block mb-0.5" style={{ color: 'var(--text-main)' }}>{point.text}</strong>
+                                    <p className="text-sm leading-relaxed" style={{ color: 'rgba(172, 191, 164, 0.8)' }}>{point.detail}</p>
                                 </div>
                             </li>
                         ))}
                     </ul>
 
                     <div className="bg-[#262626]/50 border-l-4 border-[#FF7F11] p-8 rounded-r-2xl border border-[#ACBFA4]/5 observe-me" style={{ transitionDelay: '500ms' }}>
-                        <h5 className="font-bold text-xl text-[#E2E8CE] flex items-center mb-3">
+                        <h5 className="font-bold text-xl flex items-center mb-3" style={{ color: 'var(--text-main)' }}>
                             <SearchIcon className="w-6 h-6 mr-3 text-[#FF7F11]" /> What I'm Looking For
                         </h5>
-                        <p className="text-[#ACBFA4] leading-relaxed">
+                        <p className="leading-relaxed" style={{ color: 'var(--text-muted)' }}>
                             Currently seeking <strong className="text-[#FF7F11]">App Developer Intern / Web Developer Intern / AI Intern</strong> roles. Open to internships, research positions, and challenging project collaborations.
                         </p>
                     </div>
@@ -88,7 +88,7 @@ const About: React.FC = () => {
                         </h4>
                         <div className="flex flex-wrap gap-3">
                             {['Cybersecurity', 'Networking', 'Database Management', 'Artificial Intelligence', 'App Development'].map((item, i) => (
-                                <span key={i} className="px-4 py-2 bg-[#ACBFA4]/5 border border-[#ACBFA4]/10 text-[#ACBFA4] text-sm rounded-xl hover:border-[#FF7F11]/30 hover:text-[#FF7F11] transition-all cursor-default font-medium">
+                                <span key={i} className="px-4 py-2 bg-[#ACBFA4]/5 border border-[#ACBFA4]/10 text-sm rounded-xl hover:border-[#FF7F11]/30 hover:text-[#FF7F11] transition-all cursor-default font-medium" style={{ color: 'var(--text-muted)' }}>
                                     {item}
                                 </span>
                             ))}
@@ -103,8 +103,8 @@ const About: React.FC = () => {
                                     {info.icon.type === Icon ? info.icon : React.cloneElement(info.icon as React.ReactElement, { className: (info.icon as React.ReactElement).props.className.replace('text-orange-500', 'text-[#FF7F11]') })}
                                 </div>
                                 <div className="flex flex-col">
-                                    <span className="text-[10px] font-bold text-[#ACBFA4]/60 uppercase tracking-widest leading-none mb-1.5">{info.label}</span>
-                                    <span className="text-[#E2E8CE] font-semibold text-base group-hover:text-[#FF7F11] transition-colors">{info.value}</span>
+                                    <span className="text-[10px] font-bold uppercase tracking-widest leading-none mb-1.5" style={{ color: 'rgba(172, 191, 164, 0.6)' }}>{info.label}</span>
+                                    <span className="font-semibold text-base group-hover:text-[#FF7F11] transition-colors" style={{ color: 'var(--text-main)' }}>{info.value}</span>
                                 </div>
                             </div>
                         ))}
