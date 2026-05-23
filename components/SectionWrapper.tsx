@@ -13,14 +13,17 @@ const SectionWrapper: React.FC<SectionWrapperProps> = ({ id, title, subtitle, ch
   useAnimationObserver();
 
   return (
-    <section id={id} className="py-20 lg:py-28">
+    <section id={id} className="py-24 lg:py-36 border-b border-white/5 relative">
       <div className="container mx-auto px-6 sm:px-12 lg:px-20">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl lg:text-4xl font-bold relative inline-block observe-me" style={{ color: 'var(--text-main)' }}>
+        {/* Technical Swiss Divider Heading */}
+        <div className="text-left mb-16 border-l-4 border-[var(--primary)] pl-6 observe-me">
+          <span className="font-technical text-[10px] tracking-widest text-[var(--primary)] mb-2 block">// SYS-MODULE: {id.toUpperCase()}</span>
+          <h2 className="text-3xl lg:text-5xl font-extrabold uppercase tracking-tighter mb-3" style={{ color: 'var(--text-main)' }}>
             {title}
-            <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-20 h-1 bg-[#FF7F11] rounded-full"></span>
           </h2>
-          <p className="mt-4 text-sm font-semibold text-[#FF7F11] uppercase tracking-widest observe-me" style={{ transitionDelay: '100ms' }}>{subtitle}</p>
+          <p className="text-[10px] font-technical font-semibold text-[var(--text-muted)] tracking-wider uppercase mt-1">
+            {subtitle}
+          </p>
         </div>
         {children}
       </div>

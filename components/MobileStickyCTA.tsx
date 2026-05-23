@@ -43,10 +43,10 @@ const MobileStickyCTA: React.FC = () => {
                 }}
                 className="flex items-center gap-3 px-6 py-3 rounded-full shadow-2xl"
                 style={{
-                    background: 'var(--bg-surface)',
+                    background: 'var(--surface)',
                     border: '1px solid var(--primary)',
                     color: 'var(--text-main)',
-                    boxShadow: '0 10px 20px rgba(0,0,0,0.5)'
+                    boxShadow: '0 10px 30px rgba(15, 23, 42, 0.15)'
                 }}
             >
                 <span

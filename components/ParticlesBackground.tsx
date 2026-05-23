@@ -22,7 +22,7 @@ const ParticlesBackground: React.FC = () => {
 
         let animationFrameId: number;
         let particles: Particle[] = [];
-        const particleCount = 60;
+        const particleCount = 20;
         let mouseX = 0;
         let mouseY = 0;
 
@@ -68,10 +68,10 @@ const ParticlesBackground: React.FC = () => {
                 if (p.y < 0) p.y = canvas.height;
                 if (p.y > canvas.height) p.y = 0;
 
+                // Use a soft, premium teal or muted warm-slate color
+                const color = p.size > 1.5 ? `rgba(15, 118, 110, ${p.opacity * 0.15})` : `rgba(100, 116, 139, ${p.opacity * 0.1})`;
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                // Use a soft white/orange color
-                const color = p.size > 1.5 ? `rgba(255, 127, 17, ${p.opacity})` : `rgba(226, 232, 206, ${p.opacity})`;
                 ctx.fillStyle = color;
                 ctx.fill();
             });

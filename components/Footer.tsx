@@ -7,8 +7,9 @@ const Footer: React.FC = () => {
         <footer
             className="py-8 border-t"
             style={{
-                background: 'var(--bg-surface)',
-                borderColor: 'var(--border)'
+                background: 'var(--glass-bg-soft)',
+                borderColor: 'var(--border)',
+                backdropFilter: 'blur(8px)'
             }}
         >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center" style={{ color: 'var(--text-muted)' }}>

@@ -2,6 +2,7 @@ import React from 'react';
 import SectionWrapper from './SectionWrapper';
 import { EDUCATION_DATA } from '../data';
 import Icon from './icons/Icon';
+import SpotlightCard from './SpotlightCard';
 import type { IconType } from '../types';
 
 interface EducationItemProps {
@@ -16,84 +17,64 @@ interface EducationItemProps {
 }
 
 const EducationItem: React.FC<EducationItemProps> = ({ degree, institution, period, details, score, icon, isLast, delay }) => (
-    <div className="relative pl-12 md:pl-20 pb-12 observe-me group" style={{ transitionDelay: `${delay}ms` }}>
+    <div className="relative pl-12 md:pl-20 pb-10 observe-me group" style={{ transitionDelay: `${delay}ms` }}>
         {/* Timeline Line */}
         <div
-            className="absolute top-2 w-[2px] h-full"
+            className="absolute top-2 w-[1px] h-full"
             style={{
-                left: '23px', // Center of the 48px circle roughly, adjusted
+                left: '23px',
                 background: isLast ? 'transparent' : 'var(--border)',
-                // Mobile adjustment if needed, but keeping fixed for now
             }}
         ></div>
 
         {/* Timeline Marker (Circle) */}
         <div
-            className="absolute left-0 top-0 z-10 flex items-center justify-center rounded-full transition-transform duration-500 group-hover:scale-110"
+            className="absolute left-0 top-0 z-10 flex items-center justify-center rounded transition-all duration-300 border-[3px] border-[var(--primary)] text-[var(--primary)]"
             style={{
-                width: '48px',
-                height: '48px',
-                background: 'var(--bg-card)',
-                border: '4px solid var(--primary)',
-                boxShadow: '0 0 15px rgba(249,115,22,0.3)',
-                color: 'var(--text-main)'
+                width: '46px',
+                height: '46px',
+                background: 'var(--surface)',
+                borderRadius: '8px',
+                boxShadow: '4px 4px 0px rgba(15, 118, 110, 0.18)',
             }}
         >
-            <Icon name={icon} className="w-5 h-5" />
+            <Icon name={icon} className="w-4 h-4 text-[var(--primary)]" />
         </div>
 
         {/* Education Card */}
-        <div
-            className="p-8 rounded-3xl transition-all duration-500 relative"
-            style={{
-                background: 'var(--bg-card)',
-                border: '1px solid var(--border)',
-                borderRadius: 'var(--radius-global)'
-            }}
-            onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-8px)';
-                e.currentTarget.style.borderColor = 'var(--primary)';
-                e.currentTarget.style.boxShadow = 'var(--shadow-hover)';
-            }}
-            onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.borderColor = 'var(--border)';
-                e.currentTarget.style.boxShadow = 'none';
-            }}
+        <SpotlightCard
+            className="glass-card p-6 md:p-8 relative"
+            style={{ transitionDelay: `${delay}ms` }}
         >
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4 pb-3 border-b border-white/10">
                 <div>
-                    <h4 className="text-2xl md:text-3xl font-bold mb-1" style={{ color: 'var(--text-main)', fontFamily: "'Poppins', sans-serif" }}>{degree}</h4>
-                    <p className="text-lg font-semibold" style={{ color: 'var(--text-muted)' }}>{institution}</p>
+                    <h4 className="text-lg md:text-xl font-extrabold uppercase font-primary mb-1" style={{ color: 'var(--text-main)' }}>{degree}</h4>
+                    <p className="text-xs font-technical font-semibold text-[var(--text-muted)]">{institution}</p>
                 </div>
-                <div className="flex-shrink-0">
+                <div className="flex-shrink-0 self-start md:self-auto">
                     <span
-                        className="inline-block px-6 py-2 text-sm font-bold rounded-full shadow-lg"
-                        style={{
-                            background: 'var(--primary)',
-                            color: '#fff'
-                        }}
+                        className="inline-block px-3 py-1 text-[10px] font-technical font-bold rounded bg-[var(--primary-soft)] border border-white/10 text-[var(--primary)]"
                     >
                         {period}
-                    </span>
+                      </span>
                 </div>
             </div>
 
-            <p className="text-lg font-bold mb-4 uppercase tracking-wider" style={{ color: 'var(--primary)' }}>{score}</p>
+            <p className="text-xs font-technical font-bold mb-3 uppercase tracking-wider text-[var(--primary)]">// {score}</p>
 
-            <div className="text-lg leading-relaxed space-y-2 text-justify" style={{ color: 'var(--text-main)', opacity: 0.8 }}>
+            <div className="text-xs leading-relaxed space-y-2 text-justify text-[var(--text-muted)]">
                 {details.map((detail, index) => (
                     <p key={index}>{detail}</p>
                 ))}
             </div>
-        </div>
+        </SpotlightCard>
     </div>
 );
 
 const Education: React.FC = () => {
     return (
-        <SectionWrapper id="education" title="Education" subtitle="My Academic Journey">
-            <div className="max-w-6xl mx-auto pt-10">
+        <SectionWrapper id="education" title="EDUCATION" subtitle="ACADEMIC MILESTONES & HISTORY">
+            <div className="max-w-4xl mx-auto pt-6">
                 {EDUCATION_DATA.map((edu, index) => (
                     <EducationItem
                         key={index}

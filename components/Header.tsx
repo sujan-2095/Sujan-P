@@ -16,6 +16,17 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMenuOpen]);
+
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const element = document.querySelector(href);
@@ -36,9 +47,9 @@ const Header: React.FC = () => {
     <header
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       style={{
-        background: isScrolled ? 'rgba(10,10,10,0.85)' : 'transparent',
-        backdropFilter: isScrolled ? 'blur(12px)' : 'none',
-        borderBottom: isScrolled ? '1px solid var(--border-nav)' : 'none',
+        background: isScrolled ? 'var(--glass-bg)' : 'transparent',
+        backdropFilter: isScrolled ? 'blur(16px)' : 'none',
+        borderBottom: isScrolled ? '1px solid var(--border)' : 'none',
         padding: isScrolled ? '0' : '10px 0'
       }}
     >
@@ -55,54 +66,59 @@ const Header: React.FC = () => {
             <span>Sujan P</span>
           </a>
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:block">
-            <ul className="flex items-center space-x-8">
-              {NAV_LINKS.map((link) => {
-                const isActive = activeSection === link.href.substring(1);
-                return (
-                  <li key={link.name} className="relative">
-                    <a
-                      href={link.href}
-                      onClick={(e) => handleLinkClick(e, link.href)}
-                      className="text-sm font-medium transition-colors"
-                      style={{
-                        color: isActive ? 'var(--primary)' : 'var(--text-muted)',
-                        fontWeight: 600
-                      }}
-                      onMouseEnter={(e) => e.currentTarget.style.color = 'var(--primary)'}
-                      onMouseLeave={(e) => e.currentTarget.style.color = isActive ? 'var(--primary)' : 'var(--text-muted)'}
-                    >
-                      {link.name}
-                    </a>
-                    {/* Active Indicator Dot */}
-                    <span
-                      className="absolute left-1/2 bottom-[-12px] transform -translate-x-1/2 transition-all duration-300"
-                      style={{
-                        width: isActive ? '6px' : '0',
-                        height: isActive ? '6px' : '0',
-                        borderRadius: '50%',
-                        backgroundColor: 'var(--primary)',
-                        opacity: isActive ? 1 : 0
-                      }}
-                    ></span>
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
+          {/* Controls & Nav Wrapper */}
+          <div className="flex items-center gap-6">
+            {/* Desktop Nav */}
+            <nav className="hidden lg:block">
+              <ul className="flex items-center space-x-8">
+                {NAV_LINKS.map((link) => {
+                  const isActive = activeSection === link.href.substring(1);
+                  return (
+                    <li key={link.name} className="relative">
+                      <a
+                        href={link.href}
+                        onClick={(e) => handleLinkClick(e, link.href)}
+                        className="font-technical text-[10px] font-bold tracking-widest transition-colors"
+                        style={{
+                          color: isActive ? 'var(--primary)' : 'var(--text-muted)',
+                        }}
+                        onMouseEnter={(e) => e.currentTarget.style.color = 'var(--primary)'}
+                        onMouseLeave={(e) => e.currentTarget.style.color = isActive ? 'var(--primary)' : 'var(--text-muted)'}
+                      >
+                        {link.name}
+                      </a>
+                      {/* Active Indicator Dot */}
+                      <span
+                        className="absolute left-1/2 bottom-[-12px] transform -translate-x-1/2 transition-all duration-300"
+                        style={{
+                          width: isActive ? '4px' : '0',
+                          height: isActive ? '4px' : '0',
+                          borderRadius: '0%',
+                          backgroundColor: 'var(--primary)',
+                          opacity: isActive ? 1 : 0
+                        }}
+                      ></span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </nav>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="lg:hidden transition-colors"
-            style={{ color: isMenuOpen ? 'var(--primary)' : 'var(--text-main)' }}
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16m-7 6h7"}></path>
-            </svg>
-          </button>
+
+
+            {/* Mobile Menu Button */}
+            <button
+              className="lg:hidden flex items-center transition-colors font-technical text-[10px] font-bold tracking-widest gap-2"
+              style={{ color: isMenuOpen ? 'var(--primary)' : 'var(--text-main)' }}
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              <span>{isMenuOpen ? 'CLOSE' : 'MENU'}</span>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16m-7 6h7"}></path>
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -110,10 +126,10 @@ const Header: React.FC = () => {
       <div
         className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out`}
         style={{
-          maxHeight: isMenuOpen ? '400px' : '0',
+          maxHeight: isMenuOpen ? '450px' : '0',
           opacity: isMenuOpen ? 1 : 0,
-          background: 'var(--bg-card)',
-          borderBottom: '1px solid var(--border)'
+          background: 'var(--surface)',
+          borderBottom: '2px solid rgba(255, 255, 255, 0.12)'
         }}
       >
         <div className="px-6 py-6 space-y-4">
@@ -125,11 +141,11 @@ const Header: React.FC = () => {
                   <a
                     href={link.href}
                     onClick={(e) => handleLinkClick(e, link.href)}
-                    className="block py-3 px-4 rounded-xl text-center text-base font-medium transition-all"
+                    className="block py-3 px-4 rounded font-technical text-xs font-bold text-center transition-all duration-200"
                     style={{
-                      color: isActive ? 'var(--primary)' : 'var(--text-main)',
-                      backgroundColor: isActive ? 'rgba(249, 115, 22, 0.1)' : 'transparent',
-                      border: isActive ? '1px solid var(--primary-soft)' : '1px solid transparent'
+                      color: isActive ? 'var(--primary)' : 'var(--text-muted)',
+                      backgroundColor: isActive ? 'var(--primary-soft)' : 'transparent',
+                      border: isActive ? '2px solid var(--primary)' : '2px solid transparent'
                     }}
                   >
                     {link.name}
