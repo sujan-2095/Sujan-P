@@ -32,7 +32,8 @@ graph TD
 | [`/index.tsx`](file:///c:/Users/SUJAN/Documents/Portfolio/Sujan-P/index.tsx) | React Mount Entry Point | Initializes React root (`createRoot`) and renders `<App />` within `<React.StrictMode>`. |
 | [`/index.css`](file:///c:/Users/SUJAN/Documents/Portfolio/Sujan-P/index.css) | Core Design System stylesheet | House of the **theme configuration**, CSS variables, global scrollbars, layout helpers, animations, and typography tokens. Cleaned and optimized to remove redundant font imports, unused classes, and obsolete variables. |
 | [`/vercel.json`](file:///c:/Users/SUJAN/Documents/Portfolio/Sujan-P/vercel.json) | Vercel Deployment Configuration | Configures clean URLs and SPA rewrite rules to direct all deep link routes to `index.html` seamlessly. |
-| [`/App.tsx`](file:///c:/Users/SUJAN/Documents/Portfolio/Sujan-P/App.tsx) | Core Shell & Controller Component | Initializes smooth scroll (Lenis), calculates mouse vector dynamics (coordinates, velocity, angle), renders the interactive particles, atmospheric floating light orbs, and wraps the section hierarchy. |
+| [`/App.tsx`](file:///c:/Users/SUJAN/Documents/Portfolio/Sujan-P/App.tsx) | Core Shell & Controller Component | Initializes smooth scroll (Lenis), mounts TargetCursor, renders the interactive particles, atmospheric floating light orbs, and wraps the section hierarchy. Removed redundant root mouse-coordinate tracking to optimize rendering performance. |
+| [`/components/TargetCursor.tsx`](file:///c:/Users/SUJAN/Documents/Portfolio/Sujan-P/components/TargetCursor.tsx) | Thematic TargetCursor Component | Implements custom spin, click scaling, and bounding box lock-on transitions using GSAP and Tailwind CSS. |
 | [`/data.ts`](file:///c:/Users/SUJAN/Documents/Portfolio/Sujan-P/data.ts) | Centralized Data Dictionary | Holds details of navigation, education, certifications, and high-fidelity project content (team sizes, databases, results). |
 | [`/types.ts`](file:///c:/Users/SUJAN/Documents/Portfolio/Sujan-P/types.ts) | TypeScript Domain Definitions | Declares structured type definitions like `DetailedProjectContent` and allowed `IconType` keys. |
 | [`/components/`](file:///c:/Users/SUJAN/Documents/Portfolio/Sujan-P/components/) | Page-Level React Components | House of individual section containers (e.g. `Hero`, `About`, `Education`, `Projects`, `Achievements`, `Contact`, `Footer`). |
@@ -130,9 +131,9 @@ Sections are titled and spaced utilizing the **Swiss Editorial Layout Rhythm**:
 
 ## 🎬 Advanced CSS & Physics Animations
 
-### 1. Vector Spotlight Tracking & Velocity Analytics
-* **Location:** Coordination in [`/App.tsx`](file:///c:/Users/SUJAN/Documents/Portfolio/Sujan-P/App.tsx#L53-L96)
-* **How it works:** Listens to `mousemove` events, tracking exact coordinates, movement velocity, and direction angle dynamically inside a `requestAnimationFrame` debouncer. Exposes `--x`, `--y`, `--velocity`, and `--angle` CSS variables at the root.
+### 1. Thematic TargetCursor System
+* **Location:** Developed in [`/components/TargetCursor.tsx`](file:///c:/Users/SUJAN/Documents/Portfolio/Sujan-P/components/TargetCursor.tsx) and mounted in [`/App.tsx`](file:///c:/Users/SUJAN/Documents/Portfolio/Sujan-P/App.tsx)
+* **How it works:** Replaces the default system cursor with a customized, interactive cursor themed in teal. It spins in idle mode, scales on click events, and dynamically locks onto the bounding boxes of interactive elements (buttons, links, inputs, textareas) using GSAP spring-like transitions. Fallback logic automatically hides the component on mobile and touch devices for performance, and redundant global root mouse-coordinate tracking has been removed to maximize responsiveness.
 
 ### 2. Interactive Particles Canvas
 * **Location:** [`/components/ParticlesBackground.tsx`](file:///c:/Users/SUJAN/Documents/Portfolio/Sujan-P/components/ParticlesBackground.tsx)

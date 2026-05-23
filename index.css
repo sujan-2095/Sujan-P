@@ -296,3 +296,9 @@ html.lenis, html.lenis body {
 .float-p-3 {
     animation: float-panel-3 8s infinite ease-in-out alternate;
 }
+
+/* Hide default cursor when custom target cursor is active */
+.hide-cursor,
+.hide-cursor * {
+    cursor: none !important;
+}

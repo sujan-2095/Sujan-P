@@ -13,6 +13,7 @@ import ScrollToTop from './components/ScrollToTop';
 import ParticlesBackground from './components/ParticlesBackground';
 import MobileStickyCTA from './components/MobileStickyCTA';
 import Waves from './components/Waves';
+import TargetCursor from './components/TargetCursor';
 
 const App: React.FC = () => {
   // Initialize Lenis Smooth Scroll
@@ -51,53 +52,14 @@ const App: React.FC = () => {
     };
   }, []);
 
-  useEffect(() => {
-    let animationFrameId: number;
-    let lastX = 0;
-    let lastY = 0;
-    let lastTime = Date.now();
-
-    const handleMouseMove = (e: MouseEvent) => {
-      if (window.innerWidth <= 768) return; // Disable on mobile devices for smooth touch scroll
-      if (animationFrameId) cancelAnimationFrame(animationFrameId);
-
-      animationFrameId = requestAnimationFrame(() => {
-        const currentTime = Date.now();
-        const deltaTime = currentTime - lastTime;
-
-        // Calculate distance moved
-        const deltaX = e.clientX - lastX;
-        const deltaY = e.clientY - lastY;
-        const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-
-        // Calculate velocity (pixels per millisecond, scaled up for visibility)
-        const velocity = deltaTime > 0 ? Math.min(distance / deltaTime * 10, 100) : 0;
-
-        // Calculate angle (in degrees) - direction of movement
-        const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
-
-        // Update CSS variables
-        document.documentElement.style.setProperty('--x', `${e.clientX}px`);
-        document.documentElement.style.setProperty('--y', `${e.clientY}px`);
-        document.documentElement.style.setProperty('--velocity', `${velocity}`);
-        document.documentElement.style.setProperty('--angle', `${angle}deg`);
-
-        // Store current position and time for next calculation
-        lastX = e.clientX;
-        lastY = e.clientY;
-        lastTime = currentTime;
-      });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      if (animationFrameId) cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
-
   return (
     <div className="overflow-x-hidden relative animate-fade-in" style={{ backgroundColor: 'var(--bg)', color: 'var(--text-main)' }}>
+      <TargetCursor 
+        targetSelector="a, button, .cursor-target, .btn-primary, .btn-outline, input, textarea"
+        spinDuration={2}
+        hideDefaultCursor={true}
+        parallaxOn={true}
+      />
       
       {/* Blurred Floating Gradient Orbs Atmosphere */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
